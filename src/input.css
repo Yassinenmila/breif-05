@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+    --color-bypage:#000E3D;
+    --color-hdr:#006889;
+}
