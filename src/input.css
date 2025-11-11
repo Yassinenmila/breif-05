@@ -3,4 +3,10 @@
 @theme {
     --color-bypage:#000E3D;
     --color-hdr:#006889;
+    --color-span:#00c6c6;
+    --color-input:#d9d9d9;
+    --color-search:#aaaaaa;
+    --font-sans: "Poppins", sans-serif;
+    --font-title: "Orbitron", sans-serif;
+    --font-body: "Inter", sans-serif;
 }
