@@ -24,7 +24,6 @@
             <a href="#"><img src="images/bookmark.png" class="w-10"></a>
         </div>
     </header>
-</body>
 <section class="static h-[500px]   ">
     <img src="images/herop.png" class="w-full relative z-0 pt-20 h-[500px] ">
     <p class="relative text-span font-extrabold z-10  flex items-center justify-center text-center -top-40  bottom-0 ">
@@ -32,14 +31,20 @@
         to life — where every pixel tells a story, and every glow invites you to play again.
     </p>
 </section>
-<section class="flex justify-center items-center font-sans p-4 ">
-    <div class="flex">
+<section class="flex flex-col justify-center items-center font-sans p-4 ">
+    <div class="flex ">
     <input type="text" placeholder="Search" class="flex bg-input p-4 rounded-full ">
-    <button class="p-1 bg-search rounded-full relative right-12 "><img src="images/search.png " class="w-12 "></button>
-    </div>
-    <div class="flex">
-        <input type="text">
-    </div>
+    <button class="p-1 bg-search rounded-full relative right-12 ">
+        <img src="images/search.png " class="w-12 ">
+    </button>
+    </div>  
+</section> 
+<section class="flex flex-col justify-center items-center gap-9">
+    <input list="" placeholder="genre" class="flex bg-search p-4 font-sans w-[600px] rounded-2xl  ">
+    <input list="" placeholder="platform" class="flex bg-search p-4 font-sans w-[600px] rounded-2xl  ">
+    <input list="" placeholder="note" class="flex bg-search p-4 font-sans w-[600px] rounded-2xl  ">
 </section>
-
+<section id="cards"></section>
+<script src="script.js"></script>
+</body>
 </html>
