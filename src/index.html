@@ -16,7 +16,7 @@
 </head>
 
 <body class="bg-bypage font-title">
-    <header class="flex bg-hdr fixed justify-between p-6 items-center backdrop-opacity-40 w-full z-10">
+    <header class="flex bg-hdr fixed justify-between p-6 items-center backdrop-opacity-40 w-full z-10 ">
         <div>
             <a href="index.html"><img src="images/logo.png" class="w-30 pr-5"></a>
         </div>
@@ -24,9 +24,9 @@
             <a href="#"><img src="images/bookmark.png" class="w-10"></a>
         </div>
     </header>
-<section class="static h-[400px]  ">
+<section class="static h-[400px]">
     <img src="images/herop.png" class="w-full relative z-0 pt-20 h-[400px] ">
-    <p class="relative text-span font-extrabold z-10  flex items-center justify-center text-center -top-30   bottom-0  text-sm ">
+    <p class="relative text-span font-extrabold z-1  flex items-center justify-center text-center -top-30   bottom-0  text-sm ">
         From the golden age of gaming to the neon lights of tomorrow, PixelQuest brings the retro arcade experience back
         to life — where every pixel tells a story, and every glow invites you to play again.
     </p>
@@ -44,12 +44,15 @@
     <input list="" placeholder="platform" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl  ">
     <input list="" placeholder="note" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl  ">
 </section>
-<section id="cards">
+<section id="cards" class="text-white p-3 grid grid-cols-1 grid-rows-20 gap-16 pt-20 bg-bypage">    
 </section>
-<footer class="bg-[url(images/bg-footer.png)] bg-cover bg-no-repeat  h-30 flex  justify-around items-center text-white p-0"> 
+<div class="flex justify-center items-center p-6">
+<button id="loadmore" class="flex justify-center items-center bg-linear-to-r from-[#ff00ff]/80 to-[#00ffff]/80 p-3.5 w-4/5 font-extrabold text-3xl text-white rounded-2xl transition-transform duration-300 hover:scale-105" type="reset">Load More</button>
+</div>
+<footer class="bg-[url(images/bg-footer.png)] bg-cover bg-no-repeat  h-30 flex  justify-around items-center text-white p-0 "> 
  <p class="text-sm  ">© 2025 PixelQest. Tous droits réservés.</p>
  <div class="flex gap-2">
-    <a href=""><img src="images/facebook.png" class="w-7 h-7"></a>
+    <a href=""><img src="images/facebook.png" class="w-7 h-7 "></a>
     <a href=""><img src="images/x.png" class="w-7 h-7"></a>
     <a href=""><img src="images/instagram.png" class="w-7 h-7"></a>
  </div>
