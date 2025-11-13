@@ -1,9 +1,8 @@
 const searchbtn = document.querySelector("#btn-search");
 const cards = document.getElementById('cards');
-const loadmore= document.querySelector('#loadmore');
-const favorit= document.querySelector('#btn-fav');
+const loadmore = document.querySelector('#loadmore');
+
 let gamess = [];
-let favorite=[];
 let x = 1;
 fetch(`https://debuggers-games-api.duckdns.org/api/games?page=${x}`)
     .then(res => res.json())
@@ -19,7 +18,7 @@ function aff(games) {
     cards.innerHTML = "";
     games.forEach(game => {
         const cart = document.createElement('div');
-        cart.classList.add('cart', 'bg-gradient-to-r', 'from-[#ff00ff]/70', 'to-[#00ffff]/70', 'h-fit', 'transition-transform', 'duration-300', 'hover:scale-105','rounded-2xl');
+        cart.classList.add('cart', 'bg-gradient-to-r', 'from-[#ff00ff]/70', 'to-[#00ffff]/70', 'h-fit', 'transition-transform', 'duration-300', 'hover:scale-105', 'rounded-2xl');
         cart.innerHTML = `
         <img src="${game.background_image}" class="h-70 justify-center items-center w-full  rounded-t-2xl ">
         <div class="flex flex-col p-4 gap-4">
@@ -27,13 +26,23 @@ function aff(games) {
         <span class="pl-5 text-[22px]">${game.released}</span>
         <span class="pl-5 text-[22px]">Genres : ${game.genres[0].name}</span>
         <div class="flex justify-center items-center w-full">
-        <button id="btn-fav" class="p-5 flex justify-center items-end bg-gradient-to-r from-[#ff00ff] to-[#00ffff] rounded-2xl w-11/12 m-3.5 text-[25px] font-extrabold hover:from-[#00ffff] hover:to-[#ff00ff] transition-all duration-700 ease-in-out shadow-lg">Add To Favorite</button> 
+        <button class="btn-fav p-5 flex justify-center items-end bg-gradient-to-r from-[#ff00ff] to-[#00ffff] rounded-2xl w-11/12 m-3.5 text-[25px] font-extrabold hover:from-[#00ffff] hover:to-[#ff00ff] transition-all duration-700 ease-in-out shadow-lg">Add To Favorite</button> 
         </div>
         </div>
         `;
-        const favbtn = document.createElement('button');
-        favbtn.ad
         cards.appendChild(cart);
+        const favorit = cart.querySelector('.btn-fav');
+        favorit.addEventListener("click", () => {
+            let favorite = JSON.parse(localStorage.getItem("favorite")) || [];
+            const compart = favorite.some(f => f.id === game.id)
+            if (compart) {
+                alert(`${game.name} exist deja`);
+            }
+            else {
+                favorite.push(game);
+                localStorage.setItem("favorite", JSON.stringify(favorite));
+            }
+        })
     });
     if (games.length === 0) {
         cards.innerHTML = `<p class="text-center text-white text-2xl mt-10">Aucun jeu trouvé</p>`;
@@ -45,29 +54,29 @@ search.addEventListener("input", () => {
     const filter = gamess.filter(game =>
         game.name.toLowerCase().includes(value)
     )
-    if(value ===""){
+    if (value === "") {
         fetch(`https://debuggers-games-api.duckdns.org/api/games?page=1`)
-        .then(res=>res.json())
-        .then(data=>{
-            gamess=data.results;
-            aff(gamess);
-        });
+            .then(res => res.json())
+            .then(data => {
+                gamess = data.results;
+                aff(gamess);
+            });
         return;
     }
-     fetch(`https://debuggers-games-api.duckdns.org/api/games?search=${value}&page=1`)
+    fetch(`https://debuggers-games-api.duckdns.org/api/games?search=${value}&page=1`)
         .then(res => res.json())
         .then(data => {
-            gamess = data.results; 
-            aff(gamess);           
+            gamess = data.results;
+            aff(gamess);
         });
-    
+
 })
-loadmore.addEventListener("click",()=>{
+loadmore.addEventListener("click", () => {
     x++;
     fetch(`https://debuggers-games-api.duckdns.org/api/games?page=${x}`)
-    .then(res=>res.json())
-    .then(data=>{
-        gamess = [...gamess, ...data.results];
-        aff(gamess);
-    }).catch(err => console.error(err))
+        .then(res => res.json())
+        .then(data => {
+            gamess = [...gamess, ...data.results];
+            aff(gamess);
+        }).catch(err => console.error(err))
 })
