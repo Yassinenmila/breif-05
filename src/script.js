@@ -1,9 +1,16 @@
 const searchbtn = document.querySelector("#btn-search");
 const cards = document.getElementById('cards');
+cards.classList.add('flex', 'justify-center', 'items-center');
 const loadmore = document.querySelector('#loadmore');
-
+const hero = document.querySelector('#hero');
+const listfav = document.querySelector("#list-fav");
 let gamess = [];
 let x = 1;
+window.onload = function () {
+    if (window.matchMedia("(min-width:768px)").matches) {
+        hero.src = 'images/herot.png';
+    }
+}
 fetch(`https://debuggers-games-api.duckdns.org/api/games?page=${x}`)
     .then(res => res.json())
     .then(data => {
@@ -43,10 +50,16 @@ function aff(games) {
                 localStorage.setItem("favorite", JSON.stringify(favorite));
             }
         })
+        cart.addEventListener("click", (e) => {
+            if (!e.target.classList.contains('btn-fav')) {
+                infogame(game);
+            }
+        })
     });
     if (games.length === 0) {
         cards.innerHTML = `<p class="text-center text-white text-2xl mt-10">Aucun jeu trouvé</p>`;
     }
+
 }
 const search = document.querySelector('#search');
 search.addEventListener("input", () => {
@@ -80,3 +93,49 @@ loadmore.addEventListener("click", () => {
             aff(gamess);
         }).catch(err => console.error(err))
 })
+listfav.addEventListener("click", () => {
+    const todo = localStorage.getItem("favorite");
+    if (todo) {
+        const favorite = JSON.parse(todo)
+        cards.innerHTML = ``;
+        favorite.forEach(game => {
+            const carte = document.createElement('div');
+            carte.classList.add('cart', 'bg-gradient-to-r', 'from-[#ff00ff]/70', 'to-[#00ffff]/70', 'h-fit', 'transition-transform', 'duration-300', 'hover:scale-105', 'rounded-2xl');
+            carte.innerHTML = `
+            <img src="${game.background_image}" class="h-70 w-full rounded-t-2xl">
+                <div class="p-4 flex flex-col gap-2">
+                    <h3 class="text-[#ff00ff] text-2xl font-bold">${game.name}</h3>
+                    <span class="text-[20px]">${game.released}</span>
+                    <span class="text-[20px]">Genres : ${game.genres[0]?.name || "Inconnu"}</span>
+                </div>
+            `;
+            cards.appendChild(carte);
+        })
+    } else {
+        cards.innerHTML = `<h1 class="grid col-start-1 col-end-5 justify-center items-center text-5xl">aucun jeux enregistrer !!!</h1>`;
+    }
+})
+
+function infogame(game) {
+    const popup = document.createElement('div');
+    popup.classList.add('fixed','inset-0', 'bg-black', 'bg-opacity-70', 'flex', 'justify-center', 'items-center', 'z-50000','overflow-y-auto');
+    popup.innerHTML = `
+            <div class="bg-white p-6 rounded-xl w-11/12 md:w-1/2 text-center relative my-10 max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-bold mb-4">${game.name}</h2>
+            <img src="${game.background_image}" class="w-full rounded-xl mb-4">
+            <p><strong>Sorti le :</strong> ${game.released}</p>
+            <p><strong>Genres : </strong>${game.genres.map(g => g.name).join(', ')}</p>
+            <div>
+            
+            </div>
+            <h1><strong>About : </strong></h1>
+            <p class="p-9">${game.description}</p>
+            <button id="closePopup" class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Fermer</button>
+        </div>
+ `;
+    document.body.appendChild(popup);
+    popup.querySelector('#closePopup').addEventListener('click', () => {
+        popup.remove();
+    });
+
+}
