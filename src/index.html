@@ -16,35 +16,47 @@
 </head>
 
 <body class="bg-bypage font-title">
-    <header class="flex bg-hdr fixed justify-between p-6 items-center backdrop-opacity-40 w-full z-10">
+    <header class="flex bg-hdr fixed justify-between p-6 items-center backdrop-opacity-40 w-full z-10 ">
         <div>
             <a href="index.html"><img src="images/logo.png" class="w-30 pr-5"></a>
         </div>
         <div>
-            <a href="#"><img src="images/bookmark.png" class="w-10"></a>
+            <a href="#" id="list-fav"><img src="images/bookmark.png" class="w-10"></a>
         </div>
     </header>
-<section class="static h-[500px]   ">
-    <img src="images/herop.png" class="w-full relative z-0 pt-20 h-[500px] ">
-    <p class="relative text-span font-extrabold z-10  flex items-center justify-center text-center -top-40  bottom-0 ">
+<section class="h-[400px] md:h-[700px] lg:h-[1000px]">
+    <img src="images/herop.png" id="hero" class="w-full relative z-0 pt-20 h-[400px] md:h-[700px] lg:h-[1000px]"> 
+    <p class="relative text-span font-extrabold z-1  flex items-center justify-center text-center -top-30 md:-top-60 lg:-top-90  bottom-0  text-sm md:text-3xl lg:text-4xl">
         From the golden age of gaming to the neon lights of tomorrow, PixelQuest brings the retro arcade experience back
         to life — where every pixel tells a story, and every glow invites you to play again.
     </p>
 </section>
 <section class="flex flex-col justify-center items-center font-sans p-4 ">
-    <div class="flex ">
-    <input type="text" placeholder="Search" class="flex bg-input p-4 rounded-full ">
-    <button class="p-1 bg-search rounded-full relative right-12 ">
+    <div class="flex w-[90%] justify-center items-center">
+    <input id="search" type="text" placeholder="Search" class="flex  bg-input p-4 rounded-full w-[90%] md:w-[70%] ">
+    <button id="btn-search" class="p-1 bg-search rounded-full relative right-12 ">
         <img src="images/search.png " class="w-12 ">
     </button>
     </div>  
 </section> 
-<section class="flex flex-col justify-center items-center gap-9">
-    <input list="" placeholder="genre" class="flex bg-search p-4 font-sans w-[600px] rounded-2xl  ">
-    <input list="" placeholder="platform" class="flex bg-search p-4 font-sans w-[600px] rounded-2xl  ">
-    <input list="" placeholder="note" class="flex bg-search p-4 font-sans w-[600px] rounded-2xl  ">
+<section class="flex flex-col md:flex-row justify-center items-center gap-9">
+    <input list="" placeholder="genre" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl  ">
+    <input list="" placeholder="platform" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl  ">
+    <input list="" placeholder="note" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl  ">
 </section>
-<section id="cards"></section>
+<section id="cards" class="text-white p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 pt-20 bg-bypage">     
+</section>
+<div class="flex justify-center items-center p-6">
+<button id="loadmore" class="flex justify-center items-center bg-linear-to-r from-[#ff00ff]/80 to-[#00ffff]/80 p-3.5 w-4/5 font-extrabold text-3xl text-white rounded-2xl transition-transform duration-300 hover:scale-105" type="reset">Load More</button>
+</div>
+<footer class="bg-[url(images/bg-footer.png)] bg-cover bg-no-repeat  h-30 flex  justify-around items-center text-white p-0 "> 
+ <p class="text-sm  ">© 2025 PixelQest. Tous droits réservés.</p>
+ <div class="flex gap-2">
+    <a href=""><img src="images/facebook.png" class="w-7 h-7 "></a>
+    <a href=""><img src="images/x.png" class="w-7 h-7"></a>
+    <a href=""><img src="images/instagram.png" class="w-7 h-7"></a>
+ </div>
+</footer>
 <script src="script.js"></script>
-</body>
+</body> 
 </html>
