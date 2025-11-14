@@ -174,7 +174,7 @@ listfav.addEventListener("click", () => {
 
 function infogame(game) {
     const popup = document.createElement('div');
-    popup.classList.add('fixed', 'inset-0', 'bg-black', 'bg-opacity-70', 'flex', 'z-50000', 'overflow-y-auto');
+    popup.classList.add('fixed', 'inset-0', 'bg-black', 'bg-opacity-70','justify-center','items-center', 'flex', 'z-50000', 'overflow-y-auto');
     popup.innerHTML = `
             <div class="bg-white p-6 rounded-xl w-11/12 md:w-1/2  relative my-10 max-h-[90vh] overflow-y-auto">
             <h2 class="text-2xl font-bold mb-4">${game.name}</h2>
