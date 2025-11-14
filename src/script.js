@@ -4,6 +4,9 @@ cards.classList.add('flex', 'justify-center', 'items-center');
 const loadmore = document.querySelector('#loadmore');
 const hero = document.querySelector('#hero');
 const listfav = document.querySelector("#list-fav");
+const genre = document.querySelector("#genre");
+const plf = document.querySelector("#platform");
+const note = document.querySelector("#note");
 let gamess = [];
 let x = 1;
 window.onload = function () {
@@ -17,6 +20,56 @@ fetch(`https://debuggers-games-api.duckdns.org/api/games?page=${x}`)
         console.log(data);
         gamess = data.results;
         aff(data.results);
+        genre.addEventListener("change", (e) => {
+            const genree = e.target.value;
+            if (genree === "all") {
+                aff(data.results);
+            } else {
+                cards.innerHTML = "";
+                const filtred = gamess.filter((game) => {
+                    if (game.genres && game.genres.length > 0) {
+                        return game.genres.some(g => g.name.toLowerCase() === genree.toLowerCase())
+                    }
+                    return false;
+                })
+                aff(filtred)
+            }
+        })
+         plf.addEventListener("change", (e) => {
+            const plt = e.target.value.toLowerCase();
+            if (plt === "all") {
+                aff(gamess);
+            } else {
+                cards.innerHTML = "";
+                const filtred = gamess.filter((game) => {
+                    if (game.platforms && game.genres.length > 0) {
+                        return game.platforms.some(p => p.platform.name.toLowerCase() === plt.toLowerCase())
+                    }
+                    return false;
+                })
+                aff(filtred)
+            }
+        })
+        note.addEventListener("change", (e) => {
+            const not = e.target.value;
+            if (not === "all") {
+                aff(data.results);
+            } else {
+                cards.innerHTML = "";
+                const filtred = gamess.filter((game) => {
+                    if (game.ratings && game.ratings.length > 0) {
+                        return game.ratings.some(n => n.title.toLowerCase() === not.toLowerCase())
+                    }
+                    return false;
+                })
+                const sorted = filtred.sort((a, b) => {
+                    const ra = a.ratings.find(n => n.title.toLowerCase() === not.toLowerCase());
+                    const rb = b.ratings.find(n => n.title.toLowerCase() === not.toLowerCase());
+                    return (rb?.percent || 0) - (ra?.percent || 0);
+                });
+                aff(sorted);
+            }
+        })
     }).catch(error => {
         console.error('error to fetching data ', error);
     })
@@ -110,8 +163,8 @@ listfav.addEventListener("click", () => {
                 </div>
             `;
             cards.appendChild(carte);
-            carte.addEventListener("click", (e)=>{
-                    infogame(game);
+            carte.addEventListener("click", (e) => {
+                infogame(game);
             })
         })
     } else {
@@ -121,7 +174,7 @@ listfav.addEventListener("click", () => {
 
 function infogame(game) {
     const popup = document.createElement('div');
-    popup.classList.add('fixed','inset-0', 'bg-black', 'bg-opacity-70', 'flex', 'justify-center', 'items-center', 'z-50000','overflow-y-auto');
+    popup.classList.add('fixed', 'inset-0', 'bg-black', 'bg-opacity-70', 'flex', 'justify-center', 'items-center', 'z-50000', 'overflow-y-auto');
     popup.innerHTML = `
             <div class="bg-white p-6 rounded-xl w-11/12 md:w-1/2 text-center relative my-10 max-h-[90vh] overflow-y-auto">
             <h2 class="text-2xl font-bold mb-4">${game.name}</h2>
@@ -142,3 +195,7 @@ function infogame(game) {
     });
 
 }
+
+
+
+

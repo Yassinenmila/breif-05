@@ -40,9 +40,30 @@
     </div>  
 </section> 
 <section class="flex flex-col md:flex-row justify-center items-center gap-9">
-    <input list="" placeholder="genre" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl  ">
-    <input list="" placeholder="platform" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl  ">
-    <input list="" placeholder="note" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl  ">
+    <select id="genre" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl ">
+        <option value="All" class="text-black" selected>All</option>
+        <option value="Genre" class="text-black">Genre</option>
+        <option value="Action" class="text-black">Action</option>
+        <option value="Strategy" class="text-black">Strategy</option>
+        <option value="Adventure" class="text-black">Adventure</option>
+        <option value="Sports" class="text-black">Sports</option>
+    </select>
+    <select id="platform" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl  ">
+        <option value="All" class="text-black" selected>All Platforms</option>
+        <option class="text-black">Platforms</option>
+        <option value="PC" class="text-black">PC</option>
+        <option value="PlayStation" class="text-black">PlayStation 4</option>
+        <option value="Xbox" class="text-black">Xbox One</option>
+        <option value="iOS" class="text-black">iOS</option>
+        <option value="Android" class="text-black">Android</option>
+    </select>
+    <select id="note" class="flex bg-search p-4 font-sans w-[80%] rounded-2xl  ">
+        <option value="All" class="text-black" selected>All Notes</option>
+        <option value="recommended" class="text-black">Recommended</option>
+        <option value="exceptional" class="text-black">Exceptional</option>
+        <option value="meh" class="text-black">Meh</option>
+        <option value="skip" class="text-black">Skip</option>
+    </select>
 </section>
 <section id="cards" class="text-white p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 pt-20 bg-bypage">     
 </section>
