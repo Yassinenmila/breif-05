@@ -110,6 +110,9 @@ listfav.addEventListener("click", () => {
                 </div>
             `;
             cards.appendChild(carte);
+            carte.addEventListener("click", (e)=>{
+                    infogame(game);
+            })
         })
     } else {
         cards.innerHTML = `<h1 class="grid col-start-1 col-end-5 justify-center items-center text-5xl">aucun jeux enregistrer !!!</h1>`;
@@ -125,11 +128,11 @@ function infogame(game) {
             <img src="${game.background_image}" class="w-full rounded-xl mb-4">
             <p><strong>Sorti le :</strong> ${game.released}</p>
             <p><strong>Genres : </strong>${game.genres.map(g => g.name).join(', ')}</p>
-            <div>
-            
+            <div class="flex justify-around p-5">
+
             </div>
             <h1><strong>About : </strong></h1>
-            <p class="p-9">${game.description}</p>
+            <p class="p-1 md:p-9">${game.description}</p>
             <button id="closePopup" class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Fermer</button>
         </div>
  `;
