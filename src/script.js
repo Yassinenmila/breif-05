@@ -174,13 +174,20 @@ listfav.addEventListener("click", () => {
 
 function infogame(game) {
     const popup = document.createElement('div');
-    popup.classList.add('fixed', 'inset-0', 'bg-black', 'bg-opacity-70', 'flex', 'justify-center', 'items-center', 'z-50000', 'overflow-y-auto');
+    popup.classList.add('fixed', 'inset-0', 'bg-black', 'bg-opacity-70', 'flex', 'z-50000', 'overflow-y-auto');
     popup.innerHTML = `
-            <div class="bg-white p-6 rounded-xl w-11/12 md:w-1/2 text-center relative my-10 max-h-[90vh] overflow-y-auto">
+            <div class="bg-white p-6 rounded-xl w-11/12 md:w-1/2  relative my-10 max-h-[90vh] overflow-y-auto">
             <h2 class="text-2xl font-bold mb-4">${game.name}</h2>
             <img src="${game.background_image}" class="w-full rounded-xl mb-4">
             <p><strong>Sorti le :</strong> ${game.released}</p>
+            <p><strong>realiser :</strong> ${game.developers[0].name}</p>
+            <p><strong>studio :</strong>${game.publishers.map(p => p.name).join(', ')}</p>
             <p><strong>Genres : </strong>${game.genres.map(g => g.name).join(', ')}</p>
+            <p><strong>Platforms : </strong>${game.platforms.map(p => p.platform.name).join(', ')}</p>
+            <p><strong>recomender par :</strong> ${game.ratings[0].count}</p>
+            <p><strong>exceptional :</strong> ${game.ratings[1].count}</p>
+            <p><strong>meh :</strong> ${game.ratings[2].count}</p>
+            <p><strong>skip :</strong> ${game.ratings[3].count}</p>
             <div class="flex justify-around p-5">
 
             </div>
