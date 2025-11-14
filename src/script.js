@@ -118,7 +118,7 @@ const search = document.querySelector('#search');
 search.addEventListener("input", () => {
     const value = search.value.trim().toLowerCase();
     const filter = gamess.filter(game =>
-        game.name.toLowerCase().includes(value)
+        game.name.toLowerCase().includes(value)     
     )
     if (value === "") {
         fetch(`https://debuggers-games-api.duckdns.org/api/games?page=1`)
